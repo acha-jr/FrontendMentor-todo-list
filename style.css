@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* Colors */
+  /* Primary */
+  --bright-blue: hsl(220, 98%, 61%);
+  --check-background: linear-gradient(
+    130deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  /* Light Theme */
+  --very-light-gray: hsl(0, 0%, 98%);
+  --very-light-grayish-blue: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+
+  /* Dark Theme */
+  --very-dark-blue: hsl(235, 21%, 11%);
+  --very-dark-desaturated-blue: hsl(235, 24%, 19%);
+  --light-grayish-blue-dark: hsl(234, 39%, 85%);
+  --light-grayish-blue-hover: hsl(236, 33%, 92%);
+  --dark-grayish-blue-dark: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue-dark: hsl(233, 14%, 35%);
+  --very-dark-grayish-blue-dark-two: hsl(237, 14%, 26%);
+
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  background: url(./images/bg-desktop-light.jpg) no-repeat
+    var(--very-light-gray);
+  transition: 0.3s;
+}
+main {
+  margin: 0px auto;
+  margin-top: 75px;
+  width: 540px;
+}
+.top {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.top h1 {
+  color: white;
+  letter-spacing: 15px;
+  text-transform: uppercase;
+  font-size: 40px;
+}
+
+/* Theme Change */
+.top .theme {
+  justify-self: right;
+  position: relative;
+}
+#moon,
+#sun {
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  transition: 0.3s;
+}
+#sun {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Input Field */
+.add {
+  margin-top: 40px;
+  padding: 8px 20px;
+  background: white;
+  height: 65px;
+  width: 100%;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  align-items: center;
+}
+.idk {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid var(--light-grayish-blue);
+}
+.add input {
+  border: none;
+  height: 60%;
+  width: 90%;
+  font-size: 18px;
+  caret-color: var(--bright-blue);
+  background: local;
+}
+.add input:focus {
+  outline: none;
+}
+
+/* List Content */
+.content {
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+.empty {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.3;
+}
+/* Todo Item */
+.item {
+  font-size: 18px;
+  padding: 20px;
+  border-bottom: 1px solid var(--very-light-grayish-blue);
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.remove {
+  justify-self: right;
+  opacity: 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.item:hover .remove {
+  opacity: 1;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid var(--light-grayish-blue);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+input[type="checkbox"]::after {
+  content: url(./images/icon-check.svg);
+  display: none;
+}
+input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  top: 1px;
+  left: 1px;
+  background: white;
+  border-radius: 50%;
+}
+input[type="checkbox"]:hover {
+  background: var(--check-background);
+}
+input[type="checkbox"]:checked {
+  background: var(--check-background);
+}
+input[type="checkbox"]:checked ~ label {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+input[type="checkbox"]:checked::after {
+  display: block;
+}
+input[type="checkbox"]:checked::before {
+  display: none;
+}
+label {
+  cursor: pointer;
+}
+
+/* Filters */
+.bottom {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  padding: 20px;
+  font-size: 15px;
+}
+.bottom > * {
+  transition: 0.3s;
+}
+.bottom > p:nth-child(1) {
+  opacity: 0.3;
+  width: 150px;
+}
+.filter {
+  display: flex;
+  width: 160px;
+  justify-content: space-between;
+  color: var(--dark-grayish-blue);
+}
+.current {
+  color: var(--bright-blue);
+}
+.filter p {
+  cursor: pointer;
+  transition: 0.3s;
+}
+.filter p:hover:not(.current) {
+  color: var(--very-dark-grayish-blue);
+}
+.clear {
+  text-align: right;
+  opacity: 0.3;
+  cursor: pointer;
+}
+.clear:hover {
+  opacity: 0.5;
+}
+[draggable] {
+  cursor: move;
+}
+[draggable].dragging {
+  opacity: 0.5;
+}
+.attribution {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 30px;
+}
+.attribution a {
+  text-decoration: none;
+  color: var(--bright-blue);
+}
+
+.dark-theme {
+  background: url(./images/bg-desktop-dark.jpg) no-repeat, var(--very-dark-blue);
+  transition: 0.3s;
+}
+.dark-theme > * {
+  transition: 0.3s;
+}
+.dark-theme #moon {
+  opacity: 0;
+  pointer-events: none;
+}
+.dark-theme #sun {
+  opacity: 1;
+  pointer-events: auto;
+}
+.dark-theme .add {
+  background: var(--very-dark-desaturated-blue);
+}
+.dark-theme .idk {
+  border-color: var(--very-dark-grayish-blue-dark-two);
+}
+.dark-theme input {
+  color: var(--light-grayish-blue-dark);
+}
+.dark-theme input::placeholder {
+  color: var(--dark-grayish-blue);
+  opacity: 0.5;
+}
+.dark-theme .content {
+  background: var(--very-dark-desaturated-blue);
+}
+.dark-theme .item {
+  background: var(--very-dark-desaturated-blue);
+  color: var(--light-grayish-blue-dark);
+  border-bottom-color: var(--very-dark-grayish-blue-dark-two);
+}
+.dark-theme .attribution {
+  color: white;
+}
+.dark-theme input[type="checkbox"] {
+  border-color: var(--very-dark-grayish-blue-dark-two);
+}
+.dark-theme input[type="checkbox"]::before {
+  background: var(--very-dark-desaturated-blue);
+}
+.dark-theme .bottom {
+  color: var(--dark-grayish-blue);
+}
+.dark-theme .clear {
+  opacity: 0.7;
+}
+.dark-theme .clear:hover {
+  color: var(--light-grayish-blue-hover);
+}
+.bottom > p:nth-child(1) {
+  opacity: 0.5;
+}
+.dark-theme .filter p:hover:not(.all) {
+  color: var(--light-grayish-blue-hover);
+}
+.dark-theme .empty {
+  color: var(--very-light-grayish-blue);
+  opacity: 0.1;
+}
+
+@media screen and (min-width: 375px) and (max-width: 580px) {
+  body {
+    background: url(./images/bg-mobile-light.jpg) no-repeat;
+  }
+}
