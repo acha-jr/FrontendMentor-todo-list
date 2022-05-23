@@ -23,17 +23,7 @@ all.addEventListener("click", () => {
   complete.classList.remove("current");
   active.classList.remove("current");
 });
-//
-//
-//
 
-const left = document.querySelector("#items-left");
-const allCheckboxes = [...document.querySelectorAll("input[type='checkbox']")];
-const checkedItems = [
-  ...document.querySelectorAll("input[type='checkbox']:checked"),
-];
-// left.textContent = allCheckboxes.length - checkedItems.length;
-console.log(allCheckboxes.length);
 //
 //
 const input = document.querySelector("#input");
@@ -43,9 +33,12 @@ const item = document.querySelectorAll(".item");
 
 input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
+    all.classList.add("current");
+    complete.classList.remove("current");
+    active.classList.remove("current");
+
     if (input.value) {
       let newItem = document.createElement("div");
-      newItem.setAttribute("draggable", "true");
       newItem.classList = "item";
 
       // Date.now() generates unique id for the checkboxes
@@ -67,8 +60,8 @@ input.addEventListener("keypress", (e) => {
       img.classList.add("remove");
       newItem.appendChild(img);
 
-      // Removes item from list
       img.addEventListener("click", () => {
+        // Removes item from list
         list.removeChild(newItem);
       });
 
